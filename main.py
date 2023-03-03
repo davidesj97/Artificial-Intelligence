@@ -16,3 +16,5 @@ while True:
     if k == 27: #27 es el ascii para esc
         break
 cap.release()
+
+
