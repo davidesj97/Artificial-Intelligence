@@ -5,7 +5,7 @@ import cv2
 
 ventana: Tk = tk.Tk()
 ventana.title("ASISTENCIA")
-ventana.geometry("700x600+500+50")
+ventana.geometry("300x300")
 ventana.resizable(width=False, height=False)
 
 
@@ -32,6 +32,9 @@ def v2():
 
 #boton
 boton = tkinter.Button(ventana,text="INICIAR",command = v2)
-boton.place(x=300, y=500)
+boton.place(x=50, y=100)
+
+Boton2 = tkinter.Button(ventana,text="ASISTENCIAS")
+Boton2.place(x=150, y=100)
 
 ventana.mainloop()
