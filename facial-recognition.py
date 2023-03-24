@@ -1,7 +1,13 @@
 import cv2
 from kivy.app import App
 from kivy.uix.button import Button
+import kivy
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
 
+def camara():
+    '''Importamos el script .xml'''
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 cap = cv2.VideoCapture(0)
@@ -18,10 +24,14 @@ while True:
 cap.release()
 
 
-class boton(App):
+class MyButtons(App):
     def build(self):
-        return Button(text='Ejemplo Botón')
+        layout = BoxLayout(orientation='vertical')
+        button1 = Button(text="INICIAR")
+        button2 = Button(text="ASISTENCIA")
+        layout.add_widget(button1)
+        layout.add_widget(button2)
+        return layout
 
+MyButtons().run()
 
-if __name__ == '__main__':
-    boton().run()
