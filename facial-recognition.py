@@ -1,10 +1,4 @@
 import cv2
-from kivy.app import App
-from kivy.uix.button import Button
-import kivy
-from kivy.app import App
-from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
 
 def camara():
     '''Importamos el script .xml'''
@@ -22,16 +16,3 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 cap.release()
-
-
-class MyButtons(App):
-    def build(self):
-        layout = BoxLayout(orientation='vertical')
-        button1 = Button(text="INICIAR")
-        button2 = Button(text="ASISTENCIA")
-        layout.add_widget(button1)
-        layout.add_widget(button2)
-        return layout
-
-MyButtons().run()
-
