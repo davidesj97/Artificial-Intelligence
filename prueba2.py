@@ -27,6 +27,9 @@ class MyBoxLayout(BoxLayout):
 
         Asistencia.form_asistencias()
 
+    def cerrar(self):
+        App.get_running_app().stop()
+
 
 class MyApp(App):
     def build(self):
@@ -43,6 +46,10 @@ class MyApp(App):
         boton2 = Button(text='ASISTENCIA')
         boton2.bind(on_release=layout.bAsistencia)
         layout.add_widget(boton2)
+
+        boton3 = Button(text='CERRAR')
+        boton3.bind(on_release=layout.cerrar)
+        layout.add_widget(boton3)
 
         return layout
 
