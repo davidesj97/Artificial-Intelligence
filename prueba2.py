@@ -4,7 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 import cv2
 import Asistencia
 
-class MyBoxLayout(BoxLayout):
+class interfaz1(BoxLayout):
     def bIniciar(self, instance):
         '''Importamos el script .xml'''
         face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -23,12 +23,11 @@ class MyBoxLayout(BoxLayout):
                 break
         cap.release()
 
+
     def bAsistencia(self, instance):
-
-        Asistencia.form_asistencias()
-
         App.get_running_app().stop()
-        MyApp().run()
+        Asistencia.form_asistencias().run()
+
 
     def cerrar(self):
         App.get_running_app().stop()
@@ -36,7 +35,7 @@ class MyBoxLayout(BoxLayout):
 
 class MyApp(App):
     def build(self):
-        layout = MyBoxLayout()
+        layout = interfaz1()
 
         # boton 1 y vincularlo a la biniciar
 
@@ -50,13 +49,14 @@ class MyApp(App):
         boton2.bind(on_release=layout.bAsistencia)
         layout.add_widget(boton2)
 
-       # boton 2 y vincularlo a la basistencia
+       # boton 3 cerrar
 
         boton3 = Button(text='CERRAR')
         boton3.bind(on_release=layout.cerrar)
         layout.add_widget(boton3)
 
         return layout
+
 
 
 if __name__ == '__main__':
