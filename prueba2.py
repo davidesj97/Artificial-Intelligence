@@ -47,6 +47,8 @@ class MyApp(App):
         boton2.bind(on_release=layout.bAsistencia)
         layout.add_widget(boton2)
 
+       # boton 2 y vincularlo a la basistencia
+
         boton3 = Button(text='CERRAR')
         boton3.bind(on_release=layout.cerrar)
         layout.add_widget(boton3)
