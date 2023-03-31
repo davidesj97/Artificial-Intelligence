@@ -26,6 +26,7 @@ class interfaz1(BoxLayout):
 
     def bAsistencia(self, instance):
         App.get_running_app().stop()
+        #corre interfaz asistencia
         Asistencia.form_asistencias().run()
 
 
