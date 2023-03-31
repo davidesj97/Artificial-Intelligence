@@ -27,6 +27,9 @@ class MyBoxLayout(BoxLayout):
 
         Asistencia.form_asistencias()
 
+        App.get_running_app().stop()
+        MyApp().run()
+
     def cerrar(self):
         App.get_running_app().stop()
 
