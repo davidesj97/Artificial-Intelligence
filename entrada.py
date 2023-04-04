@@ -22,7 +22,7 @@ def interfazinicial():
     bSalir = tk.Button(ventana, text="Salir", command=ventana.destroy)
     bSalir.pack(pady=30)
 
-    # Ejecutamos el loop principal de la aplicación
+    # Ejecutamos la ventana principal de la aplicación
     ventana.mainloop()
 
 if __name__ == "__main__":
