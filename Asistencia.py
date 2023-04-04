@@ -7,23 +7,23 @@ def interfazasistecia():
     ventana2.title("ASISTENCIAS")
 
     # Creamos la tabla con 4 columnas y filas
-    table = ttk.Treeview(ventana2, columns=("ID", "Nombre", "Apellido Paterno", "Apellido Materno"), show="headings")
+    tabla = ttk.Treeview(ventana2, columns=("ID", "Nombre", "Apellido Paterno", "Apellido Materno"), show="headings")
 
     # Establecemos los encabezados de cada columna
-    table.heading("ID", text="ID")
-    table.heading("Nombre", text="Nombre")
-    table.heading("Apellido Paterno", text="Apellido Paterno")
-    table.heading("Apellido Materno", text="Apellido Materno")
-    table.pack(padx=10, pady=10)
+    tabla.heading("ID", text="ID")
+    tabla.heading("Nombre", text="Nombre")
+    tabla.heading("Apellido Paterno", text="Apellido Paterno")
+    tabla.heading("Apellido Materno", text="Apellido Materno")
+    tabla.pack(padx=10, pady=10)
 
     for i in range(6):
-        table.insert("", tk.END, values=(f"{i + 1}", f"Nombre {i + 1}", f"Apellido Paterno {i + 1}",f"Apellido Materno {i + 1}"))
+        tabla.insert("", tk.END, values=(f"{i + 1}", f"Nombre {i + 1}", f"Apellido Paterno {i + 1}",f"Apellido Materno {i + 1}"))
 
     # Creamos los botones para salir y regresar
-    exit_button = tk.Button(ventana2, text="SALIR", command=ventana2.quit)
-    exit_button.pack(pady=10)
-    exit_button = tk.Button(ventana2, text="REGRESAR", command= lambda: [ventana2.destroy(), entrada.interfazinicial()])
-    exit_button.pack(pady=10)
+    botonS = tk.Button(ventana2, text="SALIR", command=ventana2.quit)
+    botonS.pack(pady=10)
+    botonR = tk.Button(ventana2, text="REGRESAR", command= lambda: [ventana2.destroy(), entrada.interfazinicial()])
+    botonR.pack(pady=10)
 
     return ventana2
 
