@@ -2,7 +2,7 @@ import cv2
 import sqlite3
 
 # Conecta a la base de datos.
-conn = sqlite3.connect('facial-recognition.db')
+conn = sqlite3.connect('facial-recognition.sql')
 
 # Crea la tabla para almacenar los datos de las caras.
 conn.execute('''CREATE TABLE IF NOT EXISTS ESTUDIANTE
