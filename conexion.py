@@ -1,32 +1,36 @@
+import mysql.connector
 import cv2
-import sqlite3
 
-# Conecta a la base de datos.
-conn = sqlite3.connect('facial-recognition.sql')
+# Definimos los permisos para acceder a la base de datos
+mydb = mysql.connector.connect(
+    host="",
+    user="",
+    password="",
+    database=""
+)
 
-# Crea la tabla para almacenar los datos de las caras.
-conn.execute('''CREATE TABLE IF NOT EXISTS ESTUDIANTE
-             (ID INTEGER PRIMARY KEY AUTOINCREMENT,
-             NOMBRE TEXT NOT NULL,
-             CARA BLOB NOT NULL);''')
+# Creamos la tabla donde se almacenarán los rostros
+mycursor = mydb.cursor()
+mycursor.execute(
+    "CREATE TABLE rostros (id INT AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(255), imagen MEDIUMBLOB)")
 
-# Agrega un usuario a la base de datos.
-nombre = 'David'
-cara = cv2.imread('David.jpg')
-conn.execute("INSERT INTO estudiantes (NOMBRE, CARA) VALUES (?, ?)",
-             (nombre, sqlite3.Binary(cv2.imencode('.jpg', cara)[1])))
+def registrar_alumno(nombre, imagen):
+    # Codifica la imagen en un array
+    _, encoded_img = cv2.imencode('.jpg', imagen)
+    content = encoded_img.tobytes()
 
-# Busca un usuario por su cara.
-cara_busqueda = cv2.imread('busqueda.jpg')
-cursor = conn.execute("SELECT NOMBRE FROM estudiantes WHERE CARA = ?",
-                      (sqlite3.Binary(cv2.imencode('.jpg', cara_busqueda)[1]),))
-result = cursor.fetchone()
-if result is not None:
-    nombre = result[0]
-    print('Estudiante:', nombre)
+    # Prepara la consulta para insertar los datos en la tabla
+    sql = "INSERT INTO rostros (nombre, imagen) VALUES (%s, %s)"
+    val = (nombre, content)
 
-# Guarda los cambios en la base de datos.
-conn.commit()
+    # Ejecuta la consulta
+    mycursor.execute(sql, val)
 
-# Cierra la conexión a la base de datos.
-conn.close()
+    # Guarda los cambios en la base de datos
+    mydb.commit()
+
+# Definimos la ruta de una imagen .jpg
+imagen = cv2.imread("")
+
+# Registra el rostro en la base de datos
+registrar_alumno("", imagen)
