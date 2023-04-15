@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-import entrada
+import Inicio
 def interfazasistecia():
     # Creamos la ventana principal
     ventana2 = tk.Tk()
@@ -22,7 +22,7 @@ def interfazasistecia():
     # Creamos los botones para salir y regresar
     botonS = tk.Button(ventana2, text="SALIR", command=ventana2.quit)
     botonS.pack(pady=10)
-    botonR = tk.Button(ventana2, text="REGRESAR", command= lambda: [ventana2.destroy(), entrada.interfazinicial()])
+    botonR = tk.Button(ventana2, text="REGRESAR", command= lambda: [ventana2.destroy(), Inicio.pantalla_principal()])
     botonR.pack(pady=10)
 
     return ventana2
