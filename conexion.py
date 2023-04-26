@@ -11,7 +11,7 @@ try:
 
     # Mostrar mensaje de conexión exitosa
     print("Conexión exitosa a la base de datos")
-
+    #ejecucion pantalla principal
     Inicio.pantalla_principal()
 
 except mysql.connector.Error as error:
