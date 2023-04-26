@@ -1,8 +1,13 @@
+from tkinter import *
+import tkinter as tk
+import Inicio
 
 import cv2
 
 
-# Funcion ejecucion camara para la asistencia Facial
+
+
+# Funcion ejecutar camara para la asistencia Facial
 def cam_asistencia_facial():
     # capturar el rostro
     cap = cv2.VideoCapture(0)  # Elegimos la camara
@@ -14,5 +19,6 @@ def cam_asistencia_facial():
 
     cap.release()  # Cerramos
     cv2.destroyAllWindows()
+
 
 
