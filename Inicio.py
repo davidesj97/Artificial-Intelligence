@@ -70,11 +70,11 @@ def registro():
     nombre_entrada.pack()
 
     Label(pantalla1, text="APELLIDO PATERNO * ").pack()  # Mostramos en la pantalla 1 la contraseña
-    apellidoP_entrada = Entry(pantalla1, textvariable=apellidoP)  # Creamos un text variable para que el usuario ingrese la contra
+    apellidoP_entrada = Entry(pantalla1, textvariable=apellidoP)  # Creamos un text variable para que el usuario ingrese la info
     apellidoP_entrada.pack()
 
     Label(pantalla1, text="APELLIDO MATERNO * ").pack()  # Mostramos en la pantalla 1 la contraseña
-    apellidoM_entrada = Entry(pantalla1,textvariable=apellidoM)  # Creamos un text variable para que el usuario ingrese la contra
+    apellidoM_entrada = Entry(pantalla1,textvariable=apellidoM)  # Creamos un text variable para que el usuario ingrese la info
     apellidoM_entrada.pack()
 
     Label(pantalla1, text="").pack()  # Dejamos un espacio para la creacion del boton
