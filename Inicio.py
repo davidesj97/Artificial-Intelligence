@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter as tk
-import Asistencia
+import RegistroAsistencia
 import IniciarA
 import RegistroFacial
 
@@ -23,7 +23,7 @@ def pantalla_principal():
     bRegistroU = tk.Button(pantalla, text="Registrar Usuario",height = "1", width = "20",command=RegistroFacial.registro)
     bRegistroU.pack(pady=30)
 
-    bAsistir = tk.Button(pantalla, text="Asistencias",height = "1", width = "20", command= lambda: [pantalla.destroy(), Asistencia.interfazasistecia()])
+    bAsistir = tk.Button(pantalla, text="Asistencias",height = "1", width = "20", command= lambda: [pantalla.destroy(), RegistroAsistencia.interfazasistecia()])
     bAsistir.pack(pady=30)
 
 
