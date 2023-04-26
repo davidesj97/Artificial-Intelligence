@@ -1,6 +1,24 @@
 import mysql.connector
-import cv2
+import Inicio
+try:
+    # Conectarse a la base de datos
+    conexion = mysql.connector.connect(
+        host='127.0.0.1',
+        user='root',
+        password='',
+        database='reconocimiento facial'
+    )
 
+    # Mostrar mensaje de conexión exitosa
+    print("Conexión exitosa a la base de datos")
+
+    Inicio.pantalla_principal()
+
+except mysql.connector.Error as error:
+    # Mostrar mensaje de error si falla la conexión
+    print("Error de conexión a la base de datos: {}".format(error))
+
+"""
 # Definimos los permisos para acceder a la base de datos
 mydb = mysql.connector.connect(
     host="",
@@ -34,3 +52,4 @@ imagen = cv2.imread("")
 
 # Registra el rostro en la base de datos
 registrar_alumno("", imagen)
+"""""

@@ -8,6 +8,7 @@ import Inicio
 
 # Funcion para almacenar el registro facial
 def registro_facial():
+
     # Vamos a capturar el rostro
     cap = cv2.VideoCapture(0)  # Elegimos la camara con la que vamos a hacer la deteccion
     while (True):
@@ -40,8 +41,10 @@ def registro_facial():
 
     Label(Inicio.pantalla1, text="Registro Facial Exitoso", fg="green", font=("Calibri", 11)).pack()
 
+
+
  # Detectamos el rostro y exportamos los pixeles
-    def reg_rostro(img, lista_resultados):
+    def Guardar_rostro(img, lista_resultados):
         data = pyplot.imread(img)
         for i in range(len(lista_resultados)):
             x1, y1, ancho, alto = lista_resultados[i]['box']
@@ -54,10 +57,11 @@ def registro_facial():
             pyplot.imshow(data[y1:y2, x1:x2])
         pyplot.show()
 
+    # Detectamos el rostro
     img = usuario_img + ".jpg"
     pixeles = pyplot.imread(img)
     detector = MTCNN()
     caras = detector.detect_faces(pixeles)
-    reg_rostro(img, caras)
+    Guardar_rostro(img, caras)
 
 

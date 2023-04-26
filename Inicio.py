@@ -4,7 +4,6 @@ import RegistroAsistencia
 import IniciarA
 import RegistroFacial
 
-
 #Funcion pantalla principal
 
 def pantalla_principal():

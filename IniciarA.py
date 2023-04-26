@@ -1,10 +1,11 @@
-from tkinter import *
-import tkinter as tk
+
 import Inicio
-
+import RegistroFacial
+from tkinter import *
+import os
 import cv2
-
-
+from matplotlib import pyplot
+from mtcnn.mtcnn import MTCNN
 
 
 # Funcion ejecutar camara para la asistencia Facial
@@ -19,6 +20,5 @@ def cam_asistencia_facial():
 
     cap.release()  # Cerramos
     cv2.destroyAllWindows()
-
 
 
