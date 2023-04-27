@@ -65,3 +65,4 @@ def registro_facial():
     Guardar_rostro(img, caras)
 
 
+

@@ -3,6 +3,9 @@ import tkinter as tk
 import RegistroAsistencia
 import IniciarA
 import RegistroFacial
+import conexion
+from tkinter import messagebox
+
 
 #Funcion pantalla principal
 
@@ -45,43 +48,61 @@ def Iasistencia():
         Label(pantalla2, text="").pack()
         Button(pantalla2, text="Inicio de Asistencia", width=20, height=1, command=IniciarA.cam_asistencia_facial).pack()
 
+
+
+
+
+
+
 # funcion interfaz registros
+def validar_campos():
+    global nombre
+    global apellidoP
+    global apellidoM
+
+    if not nombre.get() or not apellidoP.get() or not apellidoM.get():
+        messagebox.showerror("Error", "Favor de llenar los campos faltantes.")
+        pantalla1.destroy()  # cerrar ventana actual
+        return False
+
+    return True
+
+
+
 def registro():
     global nombre
-    global apellidoP  # Globalizamos las variables para usarlas en otras funciones
+    global apellidoP
     global apellidoM
     global nombre_entrada
     global apellidoP_entrada
     global apellidoM_entrada
     global pantalla1
-    pantalla1 = Toplevel(pantalla)# Esta pantalla es de un nivel superior a la principal
-    pantalla1.title("Registros Usuarios")
-    pantalla1.geometry("300x250")  # Asignamos el tamaño de la ventana
 
-    # --------- Empezaremos a crear las entradas ----------------------------------------
+    pantalla1 = Toplevel(pantalla)
+    pantalla1.title("Registros Usuarios")
+    pantalla1.geometry("300x250")
 
     nombre = StringVar()
     apellidoP = StringVar()
     apellidoM = StringVar()
 
-
-    Label(pantalla1, text="NOMBRE * ").pack()  # Mostramos en la pantalla 1 el usuario
-    nombre_entrada = Entry(pantalla1, textvariable=nombre)  # Creamos un text variable para que el usuario ingrese la info
+    Label(pantalla1, text="NOMBRE * ").pack()
+    nombre_entrada = Entry(pantalla1, textvariable=nombre)
     nombre_entrada.pack()
 
-    Label(pantalla1, text="APELLIDO PATERNO * ").pack()  # Mostramos en la pantalla 1 la contraseña
-    apellidoP_entrada = Entry(pantalla1, textvariable=apellidoP)  # Creamos un text variable para que el usuario ingrese la info
+    Label(pantalla1, text="APELLIDO PATERNO * ").pack()
+    apellidoP_entrada = Entry(pantalla1, textvariable=apellidoP)
     apellidoP_entrada.pack()
 
-    Label(pantalla1, text="APELLIDO MATERNO * ").pack()  # Mostramos en la pantalla 1 la contraseña
-    apellidoM_entrada = Entry(pantalla1,textvariable=apellidoM)  # Creamos un text variable para que el usuario ingrese la info
+    Label(pantalla1, text="APELLIDO MATERNO * ").pack()
+    apellidoM_entrada = Entry(pantalla1, textvariable=apellidoM)
     apellidoM_entrada.pack()
 
-    Label(pantalla1, text="").pack()  # Dejamos un espacio para la creacion del boton
-
-    # ------------ Vamos a crear el boton para hacer el registro facial --------------------
     Label(pantalla1, text="").pack()
-    Button(pantalla1, text="Registro Facial", width=15, height=1, command=RegistroFacial.registro_facial).pack()
+
+    Label(pantalla1, text="").pack()
+    Button(pantalla1, text="Registro Facial", width=15, height=1, command=lambda: RegistroFacial.registro_facial() if validar_campos() else None).pack()
+
 
 if __name__ == "__main__":
- pantalla_principal()
+ conexion.ConexionBD()
