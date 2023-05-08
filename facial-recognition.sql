@@ -32,7 +32,7 @@ CREATE TABLE `asistencias` (
   `nombre` varchar(50) NOT NULL,
   `apellidoP` varchar(50) NOT NULL,
   `apaellidoM` varchar(50) NOT NULL,
-  `rostro` varchar(200) NOT NULL
+  `rostro` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(50) NOT NULL,
   `apellidoP` varchar(50) NOT NULL,
   `apaellidoM` varchar(50) NOT NULL,
-  `rostro` varchar(200) NOT NULL
+  `rostro` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 COMMIT;
 
