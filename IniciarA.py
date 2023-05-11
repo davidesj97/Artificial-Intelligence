@@ -1,4 +1,3 @@
-
 import Inicio
 import RegistroFacial
 from tkinter import *

@@ -3,7 +3,7 @@ import tkinter as tk
 import RegistroAsistencia
 import IniciarA
 import RegistroFacial
-import conexion
+
 from tkinter import messagebox
 
 
@@ -49,30 +49,14 @@ def Iasistencia():
         Button(pantalla2, text="Inicio de Asistencia", width=20, height=1, command=IniciarA.cam_asistencia_facial).pack()
 
 
-
-
-
-
-
-# funcion interfaz registros
-def validar_campos():
-    global nombre
-    global apellidoP
-    global apellidoM
-
-    if not nombre.get() or not apellidoP.get() or not apellidoM.get():
-        messagebox.showerror("Error", "Favor de llenar los campos faltantes.")
-        pantalla1.destroy()  # cerrar ventana actual
-        return False
-
-    return True
-
-
+# funcion interfaz registros de usuarios
 
 def registro():
+    global n_control
     global nombre
     global apellidoP
     global apellidoM
+    global n_control_entrada
     global nombre_entrada
     global apellidoP_entrada
     global apellidoM_entrada
@@ -80,11 +64,16 @@ def registro():
 
     pantalla1 = Toplevel(pantalla)
     pantalla1.title("Registros Usuarios")
-    pantalla1.geometry("300x250")
+    pantalla1.geometry("400x250")
 
+    n_control = IntVar()
     nombre = StringVar()
     apellidoP = StringVar()
     apellidoM = StringVar()
+
+    Label(pantalla1, text="N.CONTROL * ").pack()
+    n_control_entrada = Entry(pantalla1, textvariable=n_control)
+    n_control_entrada.pack()
 
     Label(pantalla1, text="NOMBRE * ").pack()
     nombre_entrada = Entry(pantalla1, textvariable=nombre)
@@ -103,6 +92,21 @@ def registro():
     Label(pantalla1, text="").pack()
     Button(pantalla1, text="Registro Facial", width=15, height=1, command=lambda: RegistroFacial.registro_facial() if validar_campos() else None).pack()
 
+    # Agregar función para validar campos
+    def validar_campos():
+        global n_control
+        global nombre
+        global apellidoP
+        global apellidoM
+
+        if not  n_control.get() or not nombre.get() or not apellidoP.get() or not apellidoM.get():
+            messagebox.showerror("Error", "Favor de llenar los campos faltantes.")
+            pantalla1.destroy()  # cerrar ventana actual
+            return False
+
+        return True
+
+
 
 if __name__ == "__main__":
- conexion.ConexionBD()
+ pantalla_principal()
