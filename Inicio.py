@@ -6,6 +6,8 @@ import RegistroFacial
 
 from tkinter import messagebox
 
+import main
+
 
 #Funcion pantalla principal
 
@@ -109,4 +111,4 @@ def registro():
 
 
 if __name__ == "__main__":
- pantalla_principal()
+    main.iniciar()
