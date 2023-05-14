@@ -1,9 +1,9 @@
 from tkinter import *
+from tkinter import messagebox
 import tkinter as tk
 import RegistroAsistencia
 import IniciarA
 import RegistroFacial
-from tkinter import messagebox
 import main
 
 
