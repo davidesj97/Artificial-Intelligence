@@ -3,6 +3,8 @@ import cv2
 import dlib
 from PIL import Image
 from io import BytesIO
+import os
+from shutil import rmtree
 
 def getFaces(conexion):
   cursor = conexion.cursor()
@@ -22,18 +24,18 @@ def getUsers(n_control, conexion):
   return resultados
 
 def compararRostros(rostroCapturado, listaRostros):
-  # imagen = cv2.imread(rostroCapturado)
+  os.makedirs('temp/img', exist_ok=True)
   resultado = False
   i = 1
   for rostro in listaRostros:
 
     # Convetir la imagen de binarios a pixeles
     image_pillow = Image.open(BytesIO(rostro[0]))
-    image_pillow.save(f"./img/Usuario_{i}.jpg")
+    image_pillow.save(f"./temp/img/Usuario_{i}.jpg")
 
     # Cargar imagenes
     foto_cargar = fr.load_image_file(rostroCapturado)
-    foto_comparadora = fr.load_image_file(f"./img/Usuario_{i}.jpg")
+    foto_comparadora = fr.load_image_file(f"./temp/img/Usuario_{i}.jpg")
 
     # Convertir imagenes a rgb
     foto_cargar = cv2.cvtColor(foto_cargar, cv2.COLOR_BGR2RGB)
@@ -54,4 +56,5 @@ def compararRostros(rostroCapturado, listaRostros):
 
     i += 1
 
+  rmtree("./temp/img")
   return resultado
