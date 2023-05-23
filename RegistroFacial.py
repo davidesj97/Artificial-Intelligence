@@ -48,18 +48,9 @@ def registro_facial():
 
             n_control_registrado = users.getUsers(n_control, conexion) # Buscamos si el no. de control ya esta registrado
 
-            # Mostrar rostros
-            rostros = users.getFaces(conexion)
-            rostro_registrado = users.compararRostros(img, rostros)
-            print(rostro_registrado)
-
             if n_control_registrado:
                 # el número de control ya está registrado en la base de datos
                 messagebox.showerror("Error de registro", "El número de control ya está registrado.")
-                return
-            elif rostro_registrado:
-                # el rostro ya está registrado en la base de datos
-                messagebox.showerror("Error de registro", "El rostro ya está registrado.")
                 return
             else:
                 # abrir el archivo de imagen y convertirlo en una secuencia de bytes

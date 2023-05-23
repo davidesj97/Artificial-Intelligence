@@ -25,7 +25,6 @@ def getUsers():
 def searcheFace(face):
   users = getUsers()
   resultado = False
-  userRegister = {}
   # Crear el directorio donde se guardaran temporalmente las imagenes 
   os.makedirs('temp/img', exist_ok=True)
   i = 1
@@ -59,6 +58,7 @@ def searcheFace(face):
   rmtree("./temp/img")
   return resultado
 
+# Función para realizar el registro de la asistencia en la base de datos.
 def register(face):
   register = searcheFace(face)
   n_control = int(register["n_control"])

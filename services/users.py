@@ -6,16 +6,14 @@ from io import BytesIO
 import os
 from shutil import rmtree
 
+# Función para obtener los rostros registrados en la base de datos.
 def getFaces(conexion):
   cursor = conexion.cursor()
   cursor.execute("SELECT rostro FROM usuarios")
   rostros = cursor.fetchall()
   return rostros
-  # for rostro in rostros:
-  #     cv2.imshow("image", rostro)
-  #     cv2.waitKey(0)
 
-# verificar si el número de control ya está registrado en la base de datos
+# verificar si el número de control ya está registrado en la base de datos.
 def getUsers(n_control, conexion):
   cursor = conexion.cursor()
   consulta_sql = "SELECT * FROM usuarios WHERE n_control = %s"
@@ -23,9 +21,10 @@ def getUsers(n_control, conexion):
   resultados = cursor.fetchall()
   return resultados
 
+# Función que compara el rostro capturado durante el registro con los rsotros registrados en la base de datos.
 def compararRostros(rostroCapturado, listaRostros):
   os.makedirs('temp/img', exist_ok=True)
-  resultado = False
+  encontrado = False
   i = 1
   for rostro in listaRostros:
 
@@ -42,19 +41,22 @@ def compararRostros(rostroCapturado, listaRostros):
     foto_comparadora = cv2.cvtColor(foto_comparadora, cv2.COLOR_BGR2RGB)
 
     # Localizar cara control
-    lugar_cara_foto_cargar = fr.face_locations(foto_cargar)[0]
-    lugar_cara_foto_comparadora = fr.face_locations(foto_comparadora)[0]
-
-    cara_codificada_foto_cargar = fr.face_encodings(foto_cargar)[0]
-    cara_codificada_foto_comparadora = fr.face_encodings(foto_comparadora)[0]
+    lugar_cara_foto_cargar = fr.face_locations(foto_cargar)
+    lugar_cara_foto_comparadora = fr.face_locations(foto_comparadora)
+    if(len(lugar_cara_foto_cargar) == 1):
+      cara_codificada_foto_cargar = fr.face_encodings(foto_cargar, lugar_cara_foto_cargar)[0]
+      cara_codificada_foto_comparadora = fr.face_encodings(foto_comparadora, lugar_cara_foto_comparadora)[0]
+    else:
+      print("Rostro no identificado")
 
     # Realizar comparacion
-    resultado = fr.compare_faces([cara_codificada_foto_comparadora], cara_codificada_foto_cargar)
+    resultado = fr.compare_faces([cara_codificada_foto_cargar], cara_codificada_foto_comparadora)
 
     if(resultado):
-      return resultado
+      encontrado = True
+      break
 
     i += 1
 
-  rmtree("./temp/img")
-  return resultado
+  rmtree("./temp/img") # Elimininar la carpeta con las imagenes de los rostros obtenidos.
+  return encontrado

@@ -3,10 +3,10 @@ import mysql.connector
 def conexionDB():
   try:
     conexionDataBase = mysql.connector.connect(
-      host='localhost',
-      user='root',
-      password='12345',
-      database='facial_recognition',
+      host='sql9.freemysqlhosting.net',
+      user='sql9620308',
+      password='RDZL4Z4vQv',
+      database='sql9620308',
       port='3306'
     )
     return conexionDataBase
