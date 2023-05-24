@@ -1,6 +1,5 @@
 # Artificial-Intelligence
 
-# Artificial-Intelligence
 
 INTEGRANTES:
 
