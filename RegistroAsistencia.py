@@ -1,32 +1,48 @@
 import tkinter as tk
 from tkinter import ttk
+import Conexion
 import Inicio
-def interfazasistecia():
-    # Creamos la ventana principal
-    ventana2 = tk.Tk()
-    ventana2.title("ASISTENCIAS")
 
-    # Creamos la tabla con 4 columnas y filas
-    tabla = ttk.Treeview(ventana2, columns=("ID", "Nombre", "Apellido Paterno", "Apellido Materno"), show="headings")
+def interfazasistencia():
+    # Crear la ventana principal
+    root = tk.Tk()
+    root.title("Registros de Asistencias")
 
-    # Establecemos los encabezados de cada columna
-    tabla.heading("ID", text="ID")
-    tabla.heading("Nombre", text="Nombre")
-    tabla.heading("Apellido Paterno", text="Apellido Paterno")
-    tabla.heading("Apellido Materno", text="Apellido Materno")
-    tabla.pack(padx=10, pady=10)
+    # Crear el árbol para mostrar los registros
+    tree = ttk.Treeview(root)
+    tree["columns"] = ("n_control", "nombre", "apellidoP", "apellidoM")
 
-    for i in range(6):
-        tabla.insert("", tk.END, values=(f"{i + 1}", f"Nombre {i + 1}", f"Apellido Paterno {i + 1}",f"Apellido Materno {i + 1}"))
+    # Configurar encabezados de las columnas
+    tree.heading("n_control", text="Número de Control")
+    tree.heading("nombre", text="Nombre")
+    tree.heading("apellidoP", text="Apellido Paterno")
+    tree.heading("apellidoM", text="Apellido Materno")
 
-    # Creamos los botones para salir y regresar
-    botonS = tk.Button(ventana2, text="SALIR", command=ventana2.quit)
+    # Conectar a la base de datos
+    conn = Conexion.conexionDB()
+    cursor = conn.cursor()
+
+    # Obtener registros de la base de datos y agregarlos al árbol
+    cursor.execute("SELECT * FROM asistencias")
+
+    for row in cursor.fetchall():
+        tree.insert("", tk.END, values=row)
+    # Cerrar la conexión
+    conn.close()
+
+    # Empacar el árbol
+    tree.pack()
+
+    # Crear los botones para salir y regresar
+    botonS = tk.Button(root, text="SALIR", command=root.quit)
     botonS.pack(pady=10)
-    botonR = tk.Button(ventana2, text="REGRESAR", command= lambda: [ventana2.destroy(), Inicio.pantalla_principal()])
+    botonR = tk.Button(root, text="REGRESAR", command=lambda: [root.destroy(), Inicio.pantalla_principal()])
     botonR.pack(pady=10)
 
-    return ventana2
+    # Ejecutar la aplicación
+    root.mainloop()
 
+# Llamar a la función para mostrar la interfaz
 if __name__ == "__main__":
-    asistencia = interfazasistecia()
+    asistencia = interfazasistencia()
     asistencia.mainloop()
