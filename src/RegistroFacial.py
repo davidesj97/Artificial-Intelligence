@@ -6,7 +6,7 @@ from tkinter import messagebox
 from os import remove
 import Inicio
 import Conexion
-import services.users as users
+import service as users
 
 # Funcion para almacenar el registro facial
 def registro_facial():

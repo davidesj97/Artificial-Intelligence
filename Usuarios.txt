@@ -1,3 +1,0 @@
-1	Edgar	Novoa	Vaca
-2	Alan	Luna	Gonzalez
-3	David	Sanchez	De Jesus

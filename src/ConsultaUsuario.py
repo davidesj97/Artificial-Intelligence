@@ -1,13 +1,13 @@
 import mysql.connector
-
+from decouple import config
 
 def usuarios():
     conexionDataBase = mysql.connector.connect(
-        host='127.0.0.1',
-        user='root',
-        password='',
-        database='facial_recognition',
-        port='3307',
+        host=(config('host')),
+        user=(config('user')),
+        password=(config('password')),
+        database=(config('database')),
+        port=(config('port')),
     )
 
     cursor = conexionDataBase.cursor()

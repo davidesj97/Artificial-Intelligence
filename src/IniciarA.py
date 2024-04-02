@@ -7,7 +7,7 @@ import cv2
 from matplotlib import pyplot
 from mtcnn.mtcnn import MTCNN
 import time
-import services.assistance as assistance 
+import service as assistance
 
 
 # Funcion ejecutar camara para la asistencia Facial
